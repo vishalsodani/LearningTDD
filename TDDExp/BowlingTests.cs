@@ -70,6 +70,18 @@ namespace TDDExp
     
         }
 
+        [Test]
+        public void ScoreShouldBe40_WhenStrikeIsFollowedBySpareAndRegularThrows()
+        {
+            CreateStrike();
+            CreateSpare();
+            kata.PinsFallen(3);
+            kata.PinsFallen(4);
+
+            Assert.AreEqual(40, kata.score);
+
+        }
+
         private void CreateStrike()
         {
             kata.PinsFallen(10);
