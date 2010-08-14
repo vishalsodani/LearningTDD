@@ -13,14 +13,14 @@ namespace Bowling
         Frame _currentFrame;
         Frame _previousFrame;
 
-        public int score { get { return _score; }  }
+        public int score { get { return _score; } }
 
 
         public BowlingKata()
         {
             _currentFrame = new Frame();
-            _previousFrame = new Frame(); 
- 
+            _previousFrame = new Frame();
+
         }
 
         public void PinsFallen(int pinsFallen)
@@ -28,30 +28,23 @@ namespace Bowling
 
 
             _currentFrame.PinsFallen(pinsFallen);
-            
 
-             if ( _previousFrame.IsStrike() && _currentFrame.HasThrows() )
-             {
-                 AddPinsToTotalScore(pinsFallen);
-             }
 
-            if ( _previousFrame.IsSpare() && _currentFrame.IsFirstThrow() )
-            {
-                IncrementScoreForSpare(pinsFallen);
-                
-            }
-            
-            else
+            if (_previousFrame.IsStrike() && _currentFrame.HasThrows())
             {
                 AddPinsToTotalScore(pinsFallen);
             }
 
-            ChangeFrame();
+            if (_previousFrame.IsSpare() && _currentFrame.IsFirstThrow())
+            {
+                AddPinsToTotalScore(pinsFallen);
 
-           
-          
-           
-            
+            }
+
+
+           AddPinsToTotalScore(pinsFallen);
+           ChangeFrame();
+
         }
 
         private int AddPinsToTotalScore(int pinsFallen)
@@ -59,18 +52,14 @@ namespace Bowling
             return _score += pinsFallen;
         }
 
-        private void IncrementScoreForSpare(int pinsFallen)
-        {
-            _score += 2 * pinsFallen;
-        }
 
         private void ChangeFrame()
         {
             if (_currentFrame.IsSecondThrow() || _currentFrame.IsStrike())
             {
-                 Initialize();
+                Initialize();
             }
-            
+
         }
 
         private void Initialize()
@@ -80,9 +69,9 @@ namespace Bowling
 
         }
 
-       
 
-     
+
+
 
     }
 
