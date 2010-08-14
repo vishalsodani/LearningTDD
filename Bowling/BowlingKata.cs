@@ -57,17 +57,13 @@ namespace Bowling
         {
             if (_currentFrame.IsSecondThrow() || _currentFrame.IsStrike())
             {
-                Initialize();
+                _previousFrame = _currentFrame;
+                _currentFrame = new Frame();
+
             }
 
         }
 
-        private void Initialize()
-        {
-            _previousFrame = _currentFrame;
-            _currentFrame = new Frame();
-
-        }
 
 
 
