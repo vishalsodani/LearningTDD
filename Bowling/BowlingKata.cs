@@ -22,26 +22,26 @@ namespace Bowling
             framesList.Add(_currentFrame);   
         }
 
-        public void PinsFallen(int p)
+        public void PinsFallen(int pinsFallen)
         {
 
-            
-             _currentFrame.PinsFallen(p);
+
+            _currentFrame.PinsFallen(pinsFallen);
 
              if (_previousFrame != null && _previousFrame.IsStrike())
              {
-                 AddPinsToTotalScore(p);
+                 AddPinsToTotalScore(pinsFallen);
              }
 
             if (_previousFrame!=null && _previousFrame.IsSpare() && _currentFrame.IsFirstThrow() )
             {
-                IncrementScoreForSpare(p);
+                IncrementScoreForSpare(pinsFallen);
                 
             }
             
             else
             {
-                AddPinsToTotalScore(p);
+                AddPinsToTotalScore(pinsFallen);
             }
 
 
@@ -51,14 +51,14 @@ namespace Bowling
             
         }
 
-        private int AddPinsToTotalScore(int p)
+        private int AddPinsToTotalScore(int pinsFallen)
         {
-            return _score += p;
+            return _score += pinsFallen;
         }
 
-        private void IncrementScoreForSpare(int p)
+        private void IncrementScoreForSpare(int pinsFallen)
         {
-            _score += 2 * p;
+            _score += 2 * pinsFallen;
         }
 
         private void ChangeFrame()
