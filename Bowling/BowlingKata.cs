@@ -26,25 +26,33 @@ namespace Bowling
         public void PinsFallen(int pinsFallen)
         {
 
-
             _currentFrame.PinsFallen(pinsFallen);
 
 
-            if (_previousFrame.IsStrike() && _currentFrame.HasThrows())
-            {
-                AddPinsToTotalScore(pinsFallen);
-            }
+            HandleStrike(pinsFallen);
+            HandleSpare(pinsFallen);
 
+            AddPinsToTotalScore(pinsFallen);
+
+            ChangeFrame();
+
+        }
+
+        private void HandleSpare(int pinsFallen)
+        {
             if (_previousFrame.IsSpare() && _currentFrame.IsFirstThrow())
             {
                 AddPinsToTotalScore(pinsFallen);
 
             }
+        }
 
-
-           AddPinsToTotalScore(pinsFallen);
-           ChangeFrame();
-
+        private void HandleStrike(int pinsFallen)
+        {
+            if (_previousFrame.IsStrike() && _currentFrame.HasThrows())
+            {
+                AddPinsToTotalScore(pinsFallen);
+            }
         }
 
         private int AddPinsToTotalScore(int pinsFallen)
