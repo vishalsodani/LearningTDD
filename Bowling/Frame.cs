@@ -39,5 +39,10 @@ namespace Bowling
         {
             return _noofthrows == 2;
         }
+
+        internal bool HasThrows()
+        {
+            return _noofthrows > 0;
+        }
     }
 }

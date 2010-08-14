@@ -9,7 +9,7 @@ namespace Bowling
     {
         int _score;
 
-        List<Frame> framesList = new List<Frame>();
+
         Frame _currentFrame;
         Frame _previousFrame;
 
@@ -19,7 +19,8 @@ namespace Bowling
         public BowlingKata()
         {
             _currentFrame = new Frame();
-            framesList.Add(_currentFrame);   
+            _previousFrame = new Frame(); 
+ 
         }
 
         public void PinsFallen(int pinsFallen)
@@ -27,13 +28,14 @@ namespace Bowling
 
 
             _currentFrame.PinsFallen(pinsFallen);
+            
 
-             if (_previousFrame != null && _previousFrame.IsStrike())
+             if ( _previousFrame.IsStrike() && _currentFrame.HasThrows() )
              {
                  AddPinsToTotalScore(pinsFallen);
              }
 
-            if (_previousFrame!=null && _previousFrame.IsSpare() && _currentFrame.IsFirstThrow() )
+            if ( _previousFrame.IsSpare() && _currentFrame.IsFirstThrow() )
             {
                 IncrementScoreForSpare(pinsFallen);
                 
@@ -44,8 +46,9 @@ namespace Bowling
                 AddPinsToTotalScore(pinsFallen);
             }
 
-
             ChangeFrame();
+
+           
           
            
             
@@ -74,7 +77,6 @@ namespace Bowling
         {
             _previousFrame = _currentFrame;
             _currentFrame = new Frame();
-            framesList.Add(_currentFrame);
 
         }
 
