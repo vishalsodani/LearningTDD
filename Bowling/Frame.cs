@@ -29,5 +29,15 @@ namespace Bowling
             return _score == 10 && _noofthrows == 1;
         }
 
+
+        internal bool IsFirstThrow()
+        {
+            return _noofthrows == 1;
+        }
+
+        internal bool IsSecondThrow()
+        {
+            return _noofthrows == 2;
+        }
     }
 }
